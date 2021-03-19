@@ -6,10 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     api: process.env.VUE_APP_BACKEND_URL,
+    loading: false,
     commits: [],
     emails: {},
   },
-  get: {
+  getters: {
+    loading: state => {
+      return state.loading
+    },
     commits: state => {
       return state.commits
     },
@@ -18,24 +22,29 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    loading_state: (state, value) => {
+      state.loading = value
+    },
     load_commits: (state, value) => {
       state.commits = value
     },
     load_emails: (state, value) => {
-      console.log(JSON.stringify(value))
       state.emails = value
     },
   },
   actions: {
     // Get all commits from the api backend
     async get_commits({commit}) {
+      commit('loading_state', true)
       await fetch(`${this.state.api}/commit/`)
         .then(async response => {
           commit('load_commits', await response.json());
         })
+      commit('loading_state', false)
     },
     // Get all emails and map them like an hash
     async get_emails({commit}) {
+      commit('loading_state', true)
       await fetch(`${this.state.api}/email/`)
         .then(async response => {
           const emails_list = await response.json();
@@ -47,6 +56,7 @@ export default new Vuex.Store({
 
           commit('load_emails', emails_obj);
         })
+      commit('loading_state', false)
     },
   },
   modules: {

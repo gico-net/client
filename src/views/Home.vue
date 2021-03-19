@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import HeaderBlue from '@/components/design/HeaderBlue';
+import HeaderBlue from '@/components/HeaderBlue';
 
 export default {
   name: "Home",
@@ -19,10 +19,10 @@ export default {
   },
   computed: {
     commits: () => {
-      return this.$store.get.commits;
+      return this.$store.getters.commits;
     },
     emails: () => {
-      return this.$store.get.emails;
+      return this.$store.getters.emails;
     },
   }
 }
