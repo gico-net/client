@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    api: process.env.VUE_APP_BACKEND_URL,
+    commits: [],
   },
   mutations: {
   },
