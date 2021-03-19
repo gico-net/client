@@ -1,6 +1,8 @@
 <template lang="pug">
   main
     header-blue
+    b-container
+      h2 List of commits
 </template>
 
 <script>
@@ -10,6 +12,14 @@ export default {
   name: "Home",
   components: {
     'header-blue': HeaderBlue,
+  },
+  mounted() {
+    this.$store.dispatch('get_commits');
+  },
+  computed: {
+    commits: () => {
+      return this.$store.get.commits;
+    }
   }
 }
 </script>
