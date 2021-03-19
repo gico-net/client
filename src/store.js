@@ -44,7 +44,6 @@ export default new Vuex.Store({
     },
     // Get all emails and map them like an hash
     async get_emails({commit}) {
-      commit('loading_state', true)
       await fetch(`${this.state.api}/email/`)
         .then(async response => {
           const emails_list = await response.json();
@@ -56,7 +55,6 @@ export default new Vuex.Store({
 
           commit('load_emails', emails_obj);
         })
-      commit('loading_state', false)
     },
   },
   modules: {
