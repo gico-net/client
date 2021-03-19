@@ -15,11 +15,15 @@ export default {
   },
   mounted() {
     this.$store.dispatch('get_commits');
+    this.$store.dispatch('get_emails');
   },
   computed: {
     commits: () => {
       return this.$store.get.commits;
-    }
+    },
+    emails: () => {
+      return this.$store.get.emails;
+    },
   }
 }
 </script>
