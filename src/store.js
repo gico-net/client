@@ -7,15 +7,23 @@ export default new Vuex.Store({
   state: {
     api: process.env.VUE_APP_BACKEND_URL,
     loading: false,
+    loading_top_authors: false,
     commits: [],
+    top_authors: [],
     emails: {},
   },
   getters: {
     loading: state => {
       return state.loading
     },
+    loading_top_authors: state => {
+      return state.loading_top_authors
+    },
     commits: state => {
       return state.commits
+    },
+    top_authors: state => {
+      return state.top_authors
     },
     emails: state => {
       return state.emails
@@ -25,8 +33,14 @@ export default new Vuex.Store({
     loading_state: (state, value) => {
       state.loading = value
     },
+    loading_top_authors_state: (state, value) => {
+      state.loading_top_authors = value
+    },
     load_commits: (state, value) => {
       state.commits = value
+    },
+    load_top_authors: (state, value) => {
+      state.top_authors = value
     },
     load_emails: (state, value) => {
       state.emails = value
@@ -56,6 +70,15 @@ export default new Vuex.Store({
           commit('load_emails', emails_obj);
         })
     },
+    /// Get the ranking of commits authors
+    async get_top_authors({commit}) {
+      commit('loading_top_authors_state', true)
+      await fetch(`${this.state.api}/commit/top/`)
+        .then(async response => {
+          commit('load_top_authors', await response.json());
+        })
+      commit('loading_top_authors_state', false)
+    }
   },
   modules: {
   }

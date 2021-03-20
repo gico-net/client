@@ -5,3 +5,9 @@ body
   color: #2c3e50
   font-family: $font-family
   background-color: #fbfcfc 
+
+#home
+  @include breakpoint(phablet)
+    flex-direction: column-reverse
+    > div
+      margin-bottom: 42px
