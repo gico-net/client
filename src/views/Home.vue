@@ -6,7 +6,10 @@
         b-col(md="8" sm="12")
           h2 List of commits
           section#commits
+            .commit(style="padding: 50px" v-if="loading")
+              b-overlay(:show="true" spinner-large)
             commit-card(
+              v-else
               v-for="i in commits" :key="i.hash" :data="i"
               :author="emails[i.author_email]"
               :committer="emails[i.committer_email]"
@@ -35,6 +38,9 @@ export default {
     emails: function() {
       return this.$store.getters.emails;
     },
+    loading: function() {
+      return this.$store.getters.loading;
+    }
   }
 }
 </script>
