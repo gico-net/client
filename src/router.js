@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Commit from '@/views/Commit.vue'
+import Search from '@/views/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,12 @@ const routes = [
     name: 'Commit',
     component: Commit,
     props: true
-  }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+  },
 ]
 
 const router = new VueRouter({

@@ -69,9 +69,13 @@ export default new Vuex.Store({
   },
   actions: {
     // Get all commits from the api backend
-    async get_commits({commit}) {
+    async get_commits({commit}, query) {
       commit('loading_state', true)
-      await fetch(`${this.state.api}/commit/`)
+      let path = `${this.state.api}/commit/`
+      if(query) {
+        path += `?q=${query}`
+      }
+      await fetch(path)
         .then(async response => {
           commit('load_commits', await response.json());
         })
