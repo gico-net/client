@@ -32,9 +32,12 @@
             | <{{data.committer_email}}></b>
 
     .text
-      p
+      p(v-if="!expand")
         | {{ first_line(data.text) }}
         span.middot ·
+        span.date {{ data.date | moment("ddd, D MMM YYYY HH:mm:ss ZZ") }}
+      p(v-else)
+        pre {{ data.text }}
         span.date {{ data.date | moment("ddd, D MMM YYYY HH:mm:ss ZZ") }}
 </template>
 
@@ -43,7 +46,7 @@ export default {
   name: 'Commit',
   // `author` is the hash md5 of the author's gravatar
   // `committer` is the hash md5 of the committer's gravatar
-  props: ['data', 'author', 'committer'],
+  props: ['data', 'author', 'committer', 'expand'],
   methods: {
     first_line(text) {
       return text.split('\n')[0]
