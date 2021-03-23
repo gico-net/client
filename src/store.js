@@ -11,6 +11,8 @@ export default new Vuex.Store({
     commits: [],
     top_authors: [],
     emails: {},
+    author_avatar: "",
+    committer_avatar: "",
   },
   getters: {
     loading: state => {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     emails: state => {
       return state.emails
     },
+    author_avatar: state => {
+      return state.author_avatar
+    },
+    committer_avatar: state => {
+      return state.committer_avatar
+    },
   },
   mutations: {
     loading_state: (state, value) => {
@@ -44,6 +52,12 @@ export default new Vuex.Store({
     },
     load_emails: (state, value) => {
       state.emails = value
+    },
+    load_author_avatar: (state, value) => {
+      state.author_avatar = value.hash_md5
+    },
+    load_committer_avatar: (state, value) => {
+      state.committer_avatar = value.hash_md5
     },
   },
   actions: {
@@ -78,6 +92,15 @@ export default new Vuex.Store({
           commit('load_top_authors', await response.json());
         })
       commit('loading_top_authors_state', false)
+    // Get email
+    async get_email({commit}, data) {
+      await fetch(`${this.state.api}/email/search/?q=${data.email}`)
+        .then(async response => {
+          if(await response.status == 200) {
+            commit(`load_${data.type}_avatar`, await response.json());
+          }
+        })
+    },
     }
   },
   modules: {
