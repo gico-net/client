@@ -111,6 +111,16 @@ export default new Vuex.Store({
           commit('load_commit', await response.json());
         })
     },
+    // Get all commits from a repository
+    async get_repo_commits({commit}, data) {
+      commit('loading_state', true)
+      let path = `${this.state.api}/commit/?repository_user=${data.user}&repository_name=${data.name}`
+      await fetch(path)
+        .then(async response => {
+          commit('load_commits', await response.json());
+        })
+      commit('loading_state', false)
+    },
     // Get email
     async get_email({commit}, data) {
       await fetch(`${this.state.api}/email/search/?q=${data.email}`)
