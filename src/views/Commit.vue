@@ -4,7 +4,7 @@
     b-container(v-if="loading")
       b-overlay(:show="true" spinner-large)
     b-container(v-else)
-      .commit(v-if="error404")
+      .commit.no-hover(v-if="error404")
         h2 Commit not found
       commit-card(
         :data="commit"
