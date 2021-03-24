@@ -1,0 +1,11 @@
+---
+application:
+  name: "gico-web"
+  project: "gico"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-gico-web"
+  routes:
+  - application_name: "gico-web"
+    paths:
+    - "/*"
