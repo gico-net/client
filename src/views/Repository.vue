@@ -14,7 +14,7 @@
             i.fab.fa-github
       section(v-if="commits.length > 0")
         .commit.no-hover
-          h2 Commits found {{ (commits.length == 1000)?"1000+":commits.length }}
+          h2 Commits found: {{ (commits.length == 1000)?"1000+":commits.length }}
         commit-card(
           v-for="i in commits" :key="i.hash" :data="i"
           :author="emails[i.author_email]"

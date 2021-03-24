@@ -5,7 +5,7 @@
       b-overlay(:show="true" spinner-large)
     b-container(v-else)
       .commit.no-hover
-        h2 Commits found {{ commits.length }}
+        h2 Commits found: {{ commits.length }}
       .commit.no-hover(style="padding: 50px" v-if="loading")
         b-overlay(:show="true" spinner-large)
       commit-card(
