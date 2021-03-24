@@ -134,6 +134,21 @@ export default new Vuex.Store({
     async set_committer({commit}, avatar) {
       commit('load_committer_avatar', avatar);
     },
+    // Add new repository
+    async add_repo({commit}, payload) {
+      commit('loading_state', true)
+      let res
+      await fetch(`${this.state.api}/repo/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+        .then(async response => {
+          res = await response.json()
+        })
+      commit('loading_state', false)
+      return res
+    },
     // Set loading state
     async set_loading({commit}, status) {
       commit('loading_state', status);
