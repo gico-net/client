@@ -1,7 +1,7 @@
 ---
 application:
   name: "gico-web"
-  project: "gico"
+  project: "gico-db"
   organization: "QoveryCommunity"
 routers:
 - name: "main-gico-web"
