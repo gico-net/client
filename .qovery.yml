@@ -1,11 +1,11 @@
 ---
 application:
-  name: "gico-web"
-  project: "gico-db"
+  name: "frontend"
+  project: "gico-db-web"
   organization: "QoveryCommunity"
 routers:
-- name: "main-gico-web"
+- name: "main-frontend"
   routes:
-  - application_name: "gico-web"
+  - application_name: "frontend"
     paths:
     - "/*"
