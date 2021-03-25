@@ -6,6 +6,7 @@ COPY package*.json ./
 # environment variables
 ARG VUE_APP_BACKEND_URL
 
+
 RUN npm install --production
 COPY . .
 RUN npm run build --production
