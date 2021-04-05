@@ -1,0 +1,11 @@
+---
+application:
+  name: "client"
+  project: "gico"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-client"
+  routes:
+  - application_name: "client"
+    paths:
+    - "/*"
