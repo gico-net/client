@@ -10,7 +10,7 @@
           b-button.open-github(
             :href="'https://github.com/'+user+'/'+name"
             variant="outline-dark" target="_new"
-          ) Open on GitHub 
+          ) Open in GitHub 
             i.fab.fa-github
       section(v-if="commits.length > 0")
         .commit.no-hover
