@@ -5,6 +5,9 @@ application:
   organization: "QoveryCommunity"
 routers:
 - name: "main-client"
+  custom_domains:
+  - branch: main
+    domain: web.gico-db.it
   routes:
   - application_name: "client"
     paths:
